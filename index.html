@@ -6,7 +6,29 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="stylelove1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-    <script src="lovejava.js"></script>
+    <script language="javascript">
+        const wrapper = document.querySelector('.wrapper');
+        const question = document.querySelector('.question');
+        const yesBtn = document.querySelector('.yes-btn');
+        const noBtn = document.querySelector('.no-btn');
+
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const noBtnRect = noBtn.getBoundingClientRect();
+
+        
+        yesBtn.addEventListener('click', () => {
+            question.innerHTML = 'I Love You Too :)';
+        });
+
+        noBtn.addEventListener('mouseover', () => {
+            1
+            const i = Math.floor(Math.randoms() * (wrapperRect.width - noBtnRect.width)) + 1;
+            const j = Math.floor(Math.randoms() * (wrapperRect.height - noBtnRect.height)) + 1;
+
+            noBtn.style.left = i + 'px';
+            noBtn.style.top = j + 'px';
+        });
+    </script>
     <title>Document</title>
 </head>
 <body>
