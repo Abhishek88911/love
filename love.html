@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Proposal</title>
+  <style>
+    *{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+    }
+    body {
+      position: relative;
+      top: 100px;
+      background: linear-gradient(45deg, #FFB6C1, #FFC0CB);
+      font-family: 'Dancing Script', cursive;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow: scroll;
+    }
+
+    .question {
+      font-size: 36px;
+      margin-top: 50px;
+      color: #FF1493;
+    }
+
+    .options {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .option {
+      font-size: 24px;
+      margin: 0 10px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    #no {
+      color: black;
+    }
+
+    #message {
+      font-size: 30px;
+      color: #FF1493;
+      opacity: 0;
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: showMessage 2s ease-in-out forwards;
+    }
+
+    @keyframes showMessage {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="question">Will  you love me?</div>
+  <div class="options">
+    <div class="option" id="yes">Yes</div>
+    <div class="option" id="no">No</div>
+  </div>
+
+  <div id="message"></div>
+
+  <script>
+    const noButton = document.getElementById("no");
+    const message = document.getElementById("message");
+
+    noButton.addEventListener("mousemove", function(event) {
+      const cursorX = event.clientX;
+      const cursorY = event.clientY;
+      const buttonRect = this.getBoundingClientRect();
+      const distance = Math.sqrt(
+        Math.pow(cursorX - (buttonRect.left + buttonRect.width / 2), 2) +
+        Math.pow(cursorY - (buttonRect.top + buttonRect.height / 2), 2)
+      );
+      if (distance < 20) {
+        const maxX = window.innerWidth - this.clientWidth;
+        const maxY = window.innerHeight - this.clientHeight;
+        const randomX = Math.floor(Math.random() * maxX);
+        const randomY = Math.floor(Math.random() * maxY);
+
+        this.style.transform = `translate(${randomX}px, ${randomY}px)`;
+      }
+    });
+
+    noButton.addEventListener("mouseleave", function() {
+      this.style.transform = "none";
+    });
+
+    document.getElementById("yes").addEventListener("click", function() {
+      message.innerHTML = "Me too!";
+    });
+  </script>
+</body>
+</html>
